@@ -10,8 +10,21 @@ window.onload = function () {
       rocket.style.top = e.clientY + "px";
     }
   };
+  createEnemy();
 };
 
 function changeRocketAssets() {
   rocket.src = RocketHander.getRocketAssets();
+}
+
+function getRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+function createEnemy() {
+  let enemy = document.createElement("img");
+  enemy.src = `src/assets/enemy1.png`;
+  enemy.className = "enemy";
+  enemy.style.top = "0px";
+  enemy.style.left = getRandom(0, window.innerWidth - 150) + "px";
+  document.body.appendChild(enemy);
 }
