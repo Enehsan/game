@@ -20,11 +20,23 @@ function changeRocketAssets() {
 function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+let enemyterVal = null;
 function createEnemy() {
   let enemy = document.createElement("img");
-  enemy.src = `src/assets/enemy1.png`;
+  enemy.src = `src/assets/enemy${getRandom(1, 5)}.png`;
   enemy.className = "enemy";
-  enemy.style.top = "0px";
+  enemy.style.top = "-100px";
   enemy.style.left = getRandom(0, window.innerWidth - 150) + "px";
   document.body.appendChild(enemy);
+  enemyterVal = setInterval(moveEnemy, 1, enemy);
+}
+
+function moveEnemy(enemy) {
+  let posation = Number(enemy.style.top.replace("px", ""));
+  if (posation > innerHeight + 100) {
+    clearInterval(enemyterVal);
+    enemy.remove();
+    createEnemy();
+  }
+  enemy.style.top = posation + 2 + "px";
 }
