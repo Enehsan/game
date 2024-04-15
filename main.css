@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-image: url("./src/assets/background.jpg");
+  background-size: 100%;
+  background-position: top;
+  animation-name: moveBacground;
+  animation-duration: 10s;
+  animation-direction: reverse;
+  animation-timing-function: linear;
+  animation-delay: 0;
+  animation-iteration-count: infinite;
+}
+@keyframes moveBacground {
+  from {
+    background-position: top;
+  }
+  to {
+    background-position: bottom;
+  }
+}
