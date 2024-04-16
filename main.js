@@ -1,8 +1,13 @@
 let rocket = document.getElementById("rocket");
 
+document.documentElement.style.cursor = "none";
+document.addEventListener("mousemove", function () {
+  document.documentElement.style.cursor = "none";
+});
+
 window.onload = function () {
-  setInterval(changeRocketAssets, 100);
-  window.onmousemove = function (e) {
+  setInterval(changeRocketAssets, 50);
+  document.onmousemove = function (e) {
     if (e.clientX <= window.innerWidth - 100) {
       rocket.style.left = e.clientX + "px";
     }
@@ -20,21 +25,22 @@ function changeRocketAssets() {
 function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
-let enemyterVal = null;
+let enemyinterVal = null;
+
 function createEnemy() {
   let enemy = document.createElement("img");
   enemy.src = `src/assets/enemy${getRandom(1, 5)}.png`;
   enemy.className = "enemy";
-  enemy.style.top = "-100px";
+  enemy.style.top = "-150px";
   enemy.style.left = getRandom(0, window.innerWidth - 150) + "px";
   document.body.appendChild(enemy);
-  enemyterVal = setInterval(moveEnemy, 1, enemy);
+  enemyinterVal = setInterval(moveEnemy, 1, enemy);
 }
 
 function moveEnemy(enemy) {
   let posation = Number(enemy.style.top.replace("px", ""));
-  if (posation > innerHeight + 100) {
-    clearInterval(enemyterVal);
+  if (posation > window.innerHeight + 100) {
+    clearInterval(enemyinterVal);
     enemy.remove();
     createEnemy();
   }
